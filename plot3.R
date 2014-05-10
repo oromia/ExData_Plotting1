@@ -11,10 +11,15 @@ data$DateTime <- as.POSIXct(strptime(paste(data$Date, data$Time), "%d/%m/%Y %H:%
 data[,1]=as.Date(data$Date,"%d/%m/%Y")
 subsetData = subset(data,data$Date %in% as.Date(c("2007-02-01","2007-02-02")))
 
-# do plot 1 & save png
-hist(   subsetData$Global_active_power
-       ,col="red"
-       ,xlab="Global Active Power (kilowatts)"
-       ,main="Global Active Power"              )
-dev.copy(png,file="plot1.png")
+# do plot 3 & save png
+plot(   subsetData$DateTime
+       ,ylab="Energy sub metering"
+       ,subsetData[,7]
+       ,type="l"
+       ,xlab=" "  )
+legend(x="topright",legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),col=c("Black","Red","Blue"),lwd=1)
+lines(col="Red",subsetData[,10],subsetData[,8])
+lines(col="Blue",subsetData[,10],subsetData[,9])
+dev.copy(png,file="plot3.png")
 dev.off()
+

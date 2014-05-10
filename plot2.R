@@ -11,10 +11,11 @@ data$DateTime <- as.POSIXct(strptime(paste(data$Date, data$Time), "%d/%m/%Y %H:%
 data[,1]=as.Date(data$Date,"%d/%m/%Y")
 subsetData = subset(data,data$Date %in% as.Date(c("2007-02-01","2007-02-02")))
 
-# do plot 1 & save png
-hist(   subsetData$Global_active_power
-       ,col="red"
-       ,xlab="Global Active Power (kilowatts)"
-       ,main="Global Active Power"              )
-dev.copy(png,file="plot1.png")
+# do plot 2 & save png
+plot(   subsetData$DateTime
+       ,subsetData[,3]
+       ,ylab="Global Active Power (kilowatts)"
+       ,type="l"
+       ,xlab=" "    )
+dev.copy(png,file="plot2.png")
 dev.off()
